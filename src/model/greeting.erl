@@ -6,3 +6,6 @@ validation_tests() ->
 		"Greeting must be non-empty!"},
 	 {fun() -> length(GreetingText) =< 140 end,
 		"Greeting must be tweetable"}].
+
+after_create() ->
+ boss_mq:push("new-greetings", THIS).
